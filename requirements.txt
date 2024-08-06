@@ -1,9 +1,9 @@
 streamlit
 PyPDF2
-langchain
+langchain==0.1.6
 langchain-community
 InstructorEmbedding
 torch
 tqdm
 sentence_transformers==2.2.2
-faiss-gpu # Use faiss-cpu if you don't have a GPU
+faiss-gpu # Use faiss-cpu if you don't have a 
