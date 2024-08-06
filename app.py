@@ -10,7 +10,7 @@ from htmlTemplates import bot_template, user_template, css
 from langchain.llms import HuggingFaceHub
 from InstructorEmbedding import INSTRUCTOR
 
-API_KEY = open("NO_SYNC/apikey.txt", 'r').read().strip("\n")
+#API_KEY = open("NO_SYNC/apikey.txt", 'r').read().strip("\n")
 API_KEY_HF = open("NO_SYNC/apikeyHF.txt", 'r').read().strip("\n")
 
 
@@ -80,7 +80,7 @@ def main():
         st.session_state.chat_history = None
 
     st.header("Chat with multiple pdfs :books:")
-    user_question = st.text_input("Ask questions avout the pdfs")
+    user_question = st.text_input("Ask questions about the pdfs")
     if user_question:
         handle_userinput(user_question)
 
