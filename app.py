@@ -1,7 +1,7 @@
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
+from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
@@ -10,7 +10,7 @@ from htmlTemplates import bot_template, user_template, css
 from langchain.llms import HuggingFaceHub
 from InstructorEmbedding import INSTRUCTOR
 
-API_KEY = open("NO_SYNC/apikey.txt", 'r').read().strip("\n")
+#API_KEY = open("NO_SYNC/apikey.txt", 'r').read().strip("\n")
 API_KEY_HF = open("NO_SYNC/apikeyHF.txt", 'r').read().strip("\n")
 
 
@@ -43,8 +43,8 @@ def get_vectorstore(text_chunks):
 
 def get_conversation_chain(vectorstore):
     #llm = ChatOpenAI(openai_api_key=API_KEY, model="gpt-3.5-turbo")
-    llm = HuggingFaceHub(huggingfacehub_api_token=API_KEY_HF, repo_id="google/flan-t5-xxl",
-                        model_kwargs={"temprature": 0.5, "max_length": 500})
+    llm = HuggingFaceHub(huggingfacehub_api_token=API_KEY_HF, repo_id="google/flan-t5-base",
+                        model_kwargs={"temperature": 0.5, "max_length": 500})
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
@@ -80,7 +80,7 @@ def main():
         st.session_state.chat_history = None
 
     st.header("Chat with multiple pdfs :books:")
-    user_question = st.text_input("Ask questions avout the pdfs")
+    user_question = st.text_input("Ask questions about the pdfs")
     if user_question:
         handle_userinput(user_question)
 

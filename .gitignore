@@ -1,1 +1,5 @@
 NO_SYNC/
+venv
+ragvenv 
+__pycache__/
+pyc
